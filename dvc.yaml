@@ -1,0 +1,229 @@
+stages:
+  # Data ingestion
+  ingest_tabular:
+    cmd: python -m src.bloodwork_ai.ingestion.tabular_loader
+    deps:
+      - src/bloodwork_ai/ingestion/tabular_loader.py
+      - data/raw/tabular
+      - configs/data/tabular.yaml
+    outs:
+      - data/interim/tabular
+    params:
+      - data.tabular.input_path
+      - data.tabular.output_path
+
+  ingest_images:
+    cmd: python -m src.bloodwork_ai.ingestion.image_loader
+    deps:
+      - src/bloodwork_ai/ingestion/image_loader.py
+      - data/raw/images
+      - configs/data/images.yaml
+    outs:
+      - data/interim/images
+    params:
+      - data.images.input_path
+      - data.images.output_path
+
+  # Data preprocessing
+  preprocess_tabular:
+    cmd: python -m src.bloodwork_ai.preprocessing.tabular_clean
+    deps:
+      - data/interim/tabular
+      - src/bloodwork_ai/preprocessing/tabular_clean.py
+      - src/bloodwork_ai/preprocessing/tabular_feature_engineering.py
+      - configs/data/tabular.yaml
+    outs:
+      - data/processed/tabular_featured
+    params:
+      - preprocessing.tabular.imputation_strategy
+      - preprocessing.tabular.outlier_method
+      - preprocessing.tabular.scaling_method
+
+  preprocess_images:
+    cmd: python -m src.bloodwork_ai.preprocessing.image_stain_norm
+    deps:
+      - data/interim/images
+      - src/bloodwork_ai/preprocessing/image_stain_norm.py
+      - src/bloodwork_ai/preprocessing/image_augment.py
+      - configs/data/images.yaml
+    outs:
+      - data/processed/images_coco
+    params:
+      - preprocessing.images.stain_normalization
+      - preprocessing.images.augmentation
+
+  # Tabular model training
+  train_anemia:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task cbc.anemia
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/cbc/anemia_classifier.py
+      - configs/models/tabular/cbc_anemia.yaml
+    outs:
+      - artifacts/models/anemia
+    params:
+      - models.tabular.anemia
+      - training.anemia
+
+  train_mets:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task cmp.mets
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/cmp/mets_predictor.py
+      - configs/models/tabular/cmp_mets.yaml
+    outs:
+      - artifacts/models/mets
+    params:
+      - models.tabular.mets
+      - training.mets
+
+  train_cvd:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task lipid.cvd
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/lipid/cvd_predictor.py
+      - configs/models/tabular/lipid_cvd.yaml
+    outs:
+      - artifacts/models/cvd
+    params:
+      - models.tabular.cvd
+      - training.cvd
+
+  train_thyroid:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task thyroid.dysfunction
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/thyroid/thyroid_classifier.py
+      - configs/models/tabular/thyroid_dysfx.yaml
+    outs:
+      - artifacts/models/thyroid
+    params:
+      - models.tabular.thyroid
+      - training.thyroid
+
+  train_dic:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task coag.dic
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/coag/dic_early_warning.py
+      - configs/models/tabular/coag_dic.yaml
+    outs:
+      - artifacts/models/dic
+    params:
+      - models.tabular.dic
+      - training.dic
+
+  train_b12:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task vitamins.b12
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/vitamins/b12_deficiency.py
+      - configs/models/tabular/vitamins_b12.yaml
+    outs:
+      - artifacts/models/b12
+    params:
+      - models.tabular.b12
+      - training.b12
+
+  train_ferritin:
+    cmd: python -m src.bloodwork_ai.training.train_tabular --task iron.ferritin
+    deps:
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/training/train_tabular.py
+      - src/bloodwork_ai/tasks/iron/ferritin_low_predictor.py
+      - configs/models/tabular/iron_ferritin.yaml
+    outs:
+      - artifacts/models/ferritin
+    params:
+      - models.tabular.ferritin
+      - training.ferritin
+
+  # Vision model training
+  train_yolo_wbc:
+    cmd: python -m src.bloodwork_ai.training.train_vision --config configs/models/vision/yolo_wbc.yaml
+    deps:
+      - data/processed/images_coco
+      - src/bloodwork_ai/training/train_vision.py
+      - src/bloodwork_ai/models/vision/yolo_detector.py
+      - configs/models/vision/yolo_wbc.yaml
+    outs:
+      - artifacts/models/yolo_wbc
+    params:
+      - models.vision.wbc
+      - training.wbc
+
+  train_yolo_rbc:
+    cmd: python -m src.bloodwork_ai.training.train_vision --config configs/models/vision/yolo_rbc.yaml
+    deps:
+      - data/processed/images_coco
+      - src/bloodwork_ai/training/train_vision.py
+      - src/bloodwork_ai/models/vision/yolo_detector.py
+      - configs/models/vision/yolo_rbc.yaml
+    outs:
+      - artifacts/models/yolo_rbc
+    params:
+      - models.vision.rbc
+      - training.rbc
+
+  train_yolo_platelet:
+    cmd: python -m src.bloodwork_ai.training.train_vision --config configs/models/vision/yolo_platelet.yaml
+    deps:
+      - data/processed/images_coco
+      - src/bloodwork_ai/training/train_vision.py
+      - src/bloodwork_ai/models/vision/yolo_detector.py
+      - configs/models/vision/yolo_platelet.yaml
+    outs:
+      - artifacts/models/yolo_platelet
+    params:
+      - models.vision.platelet
+      - training.platelet
+
+  # Evaluation
+  evaluate_tabular:
+    cmd: python -m src.bloodwork_ai.evaluation.eval_tabular
+    deps:
+      - artifacts/models/anemia
+      - artifacts/models/mets
+      - artifacts/models/cvd
+      - artifacts/models/thyroid
+      - artifacts/models/dic
+      - artifacts/models/b12
+      - artifacts/models/ferritin
+      - data/processed/tabular_featured
+      - src/bloodwork_ai/evaluation/eval_tabular.py
+    outs:
+      - artifacts/reports/tabular
+    params:
+      - evaluation.tabular
+
+  evaluate_vision:
+    cmd: python -m src.bloodwork_ai.evaluation.eval_vision
+    deps:
+      - artifacts/models/yolo_wbc
+      - artifacts/models/yolo_rbc
+      - artifacts/models/yolo_platelet
+      - data/processed/images_coco
+      - src/bloodwork_ai/evaluation/eval_vision.py
+    outs:
+      - artifacts/reports/vision
+    params:
+      - evaluation.vision
+
+  # Report generation
+  generate_reports:
+    cmd: python -m src.bloodwork_ai.evaluation.report_builder
+    deps:
+      - artifacts/reports/tabular
+      - artifacts/reports/vision
+      - src/bloodwork_ai/evaluation/report_builder.py
+    outs:
+      - artifacts/reports/final
+    params:
+      - reports.output_format
+      - reports.include_explanations

@@ -1,0 +1,288 @@
+# Tabular data configuration
+# This file contains schemas, data types, and imputation rules for lab panels
+
+# Data schemas
+schemas:
+  cbc:
+    required_fields: ["wbc", "rbc", "hb", "hct", "plt"]
+    optional_fields: ["mcv", "mch", "mchc", "rdw", "neut_pct", "lymph_pct", "mono_pct", "eos_pct", "baso_pct"]
+    data_types:
+      wbc: float
+      rbc: float
+      hb: float
+      hct: float
+      plt: float
+      mcv: float
+      mch: float
+      mchc: float
+      rdw: float
+      neut_pct: float
+      lymph_pct: float
+      mono_pct: float
+      eos_pct: float
+      baso_pct: float
+      
+  cmp:
+    required_fields: ["na", "k", "cl", "co2", "bun", "cr", "glucose"]
+    optional_fields: ["ast", "alt", "alp", "bilirubin", "protein", "albumin", "ca"]
+    data_types:
+      na: float
+      k: float
+      cl: float
+      co2: float
+      bun: float
+      cr: float
+      glucose: float
+      ast: float
+      alt: float
+      alp: float
+      bilirubin: float
+      protein: float
+      albumin: float
+      ca: float
+      
+  lipid:
+    required_fields: ["total_chol", "hdl", "triglycerides"]
+    optional_fields: ["ldl"]
+    data_types:
+      total_chol: float
+      ldl: float
+      hdl: float
+      triglycerides: float
+      
+  thyroid:
+    required_fields: ["tsh"]
+    optional_fields: ["ft4", "ft3"]
+    data_types:
+      tsh: float
+      ft4: float
+      ft3: float
+      
+  coag:
+    required_fields: ["pt", "inr", "aptt"]
+    optional_fields: ["d_dimer", "fibrinogen", "platelets"]
+    data_types:
+      pt: float
+      inr: float
+      aptt: float
+      d_dimer: float
+      fibrinogen: float
+      platelets: float
+      
+  vitamins_iron:
+    required_fields: ["ferritin", "b12"]
+    optional_fields: ["iron", "tibc", "transferrin", "transferrin_sat", "folate", "crp"]
+    data_types:
+      ferritin: float
+      iron: float
+      tibc: float
+      transferrin: float
+      transferrin_sat: float
+      b12: float
+      folate: float
+      crp: float
+
+# Imputation strategies
+imputation:
+  strategy: "median"  # median, mean, most_frequent, constant, knn
+  constant_value: 0
+  knn_neighbors: 5
+  
+  # Panel-specific imputation
+  panel_specific:
+    cbc:
+      strategy: "median"
+      custom_values:
+        neut_pct: 60.0  # Default neutrophil percentage
+        lymph_pct: 30.0  # Default lymphocyte percentage
+        mono_pct: 8.0   # Default monocyte percentage
+        eos_pct: 2.0    # Default eosinophil percentage
+        baso_pct: 0.5   # Default basophil percentage
+        
+    cmp:
+      strategy: "median"
+      
+    lipid:
+      strategy: "median"
+      # LDL can be calculated from other values
+      calculate_ldl: true
+      
+    thyroid:
+      strategy: "median"
+      
+    coag:
+      strategy: "median"
+      
+    vitamins_iron:
+      strategy: "median"
+
+# Outlier detection and handling
+outlier_detection:
+  method: "winsorize"  # winsorize, iqr, zscore, isolation_forest
+  winsorize_limits: [0.05, 0.95]  # 5th and 95th percentiles
+  iqr_factor: 1.5
+  zscore_threshold: 3.0
+  
+  # Panel-specific outlier handling
+  panel_specific:
+    cbc:
+      method: "winsorize"
+      # Some values have natural ranges
+      custom_ranges:
+        wbc: [2.0, 20.0]
+        rbc: [3.0, 6.0]
+        hb: [8.0, 18.0]
+        hct: [25.0, 55.0]
+        plt: [100.0, 500.0]
+        
+    cmp:
+      method: "winsorize"
+      custom_ranges:
+        na: [130.0, 150.0]
+        k: [3.0, 6.0]
+        cl: [95.0, 110.0]
+        co2: [20.0, 30.0]
+        bun: [5.0, 25.0]
+        cr: [0.5, 2.0]
+        glucose: [70.0, 140.0]
+        
+    lipid:
+      method: "winsorize"
+      custom_ranges:
+        total_chol: [100.0, 300.0]
+        ldl: [50.0, 200.0]
+        hdl: [20.0, 100.0]
+        triglycerides: [50.0, 500.0]
+        
+    thyroid:
+      method: "winsorize"
+      custom_ranges:
+        tsh: [0.1, 20.0]
+        ft4: [0.5, 3.0]
+        ft3: [1.0, 5.0]
+        
+    coag:
+      method: "winsorize"
+      custom_ranges:
+        pt: [10.0, 20.0]
+        inr: [0.8, 5.0]
+        aptt: [20.0, 50.0]
+        d_dimer: [0.0, 2000.0]
+        fibrinogen: [150.0, 500.0]
+        platelets: [50.0, 600.0]
+        
+    vitamins_iron:
+      method: "winsorize"
+      custom_ranges:
+        ferritin: [5.0, 500.0]
+        iron: [30.0, 200.0]
+        tibc: [200.0, 500.0]
+        transferrin: [200.0, 400.0]
+        transferrin_sat: [10.0, 50.0]
+        b12: [100.0, 1000.0]
+        folate: [3.0, 20.0]
+        crp: [0.0, 10.0]
+
+# Feature engineering
+feature_engineering:
+  enable_ratios: true
+  enable_trends: true
+  enable_interactions: true
+  
+  # Ratio features
+  ratios:
+    cbc:
+      - name: "mcv_mch_ratio"
+        numerator: "mcv"
+        denominator: "mch"
+      - name: "rdw_mcv_ratio"
+        numerator: "rdw"
+        denominator: "mcv"
+      - name: "neut_lymph_ratio"
+        numerator: "neut_pct"
+        denominator: "lymph_pct"
+        
+    cmp:
+      - name: "bun_cr_ratio"
+        numerator: "bun"
+        denominator: "cr"
+      - name: "ast_alt_ratio"
+        numerator: "ast"
+        denominator: "alt"
+      - name: "albumin_globulin_ratio"
+        numerator: "albumin"
+        denominator: "protein"
+        
+    lipid:
+      - name: "ldl_hdl_ratio"
+        numerator: "ldl"
+        denominator: "hdl"
+      - name: "total_hdl_ratio"
+        numerator: "total_chol"
+        denominator: "hdl"
+      - name: "triglycerides_hdl_ratio"
+        numerator: "triglycerides"
+        denominator: "hdl"
+        
+    thyroid:
+      - name: "tsh_ft4_ratio"
+        numerator: "tsh"
+        denominator: "ft4"
+      - name: "ft3_ft4_ratio"
+        numerator: "ft3"
+        denominator: "ft4"
+        
+    coag:
+      - name: "pt_aptt_ratio"
+        numerator: "pt"
+        denominator: "aptt"
+      - name: "d_dimer_fibrinogen_ratio"
+        numerator: "d_dimer"
+        denominator: "fibrinogen"
+        
+    vitamins_iron:
+      - name: "iron_tibc_ratio"
+        numerator: "iron"
+        denominator: "tibc"
+      - name: "b12_folate_ratio"
+        numerator: "b12"
+        denominator: "folate"
+
+# Data validation
+validation:
+  enable_schema_validation: true
+  enable_range_validation: true
+  enable_consistency_validation: true
+  
+  # Consistency checks
+  consistency_checks:
+    cbc:
+      - name: "differential_sum_check"
+        fields: ["neut_pct", "lymph_pct", "mono_pct", "eos_pct", "baso_pct"]
+        condition: "sum_between_95_and_105"
+        
+    lipid:
+      - name: "ldl_calculation_check"
+        fields: ["total_chol", "hdl", "triglycerides", "ldl"]
+        condition: "ldl_equals_total_minus_hdl_minus_triglycerides_over_5"
+        
+    vitamins_iron:
+      - name: "transferrin_saturation_check"
+        fields: ["iron", "tibc", "transferrin_sat"]
+        condition: "transferrin_sat_equals_iron_over_tibc_times_100"
+
+# Data splitting
+splitting:
+  strategy: "stratified"  # stratified, random, time_based
+  test_size: 0.2
+  val_size: 0.2
+  random_state: 42
+  
+  # Stratification fields
+  stratification_fields:
+    cbc: ["anemia_type"]
+    cmp: ["metabolic_syndrome"]
+    lipid: ["cvd_risk_level"]
+    thyroid: ["thyroid_dysfunction"]
+    coag: ["dic_stage"]
+    vitamins_iron: ["b12_deficiency", "ferritin_low"]

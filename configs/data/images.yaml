@@ -1,0 +1,295 @@
+# Image data configuration
+# This file contains COCO/YOLO config, stain normalization parameters, and augmentation settings
+
+# Image formats and extensions
+formats:
+  supported_extensions: [".jpg", ".jpeg", ".png", ".tiff", ".tif", ".bmp"]
+  default_format: "jpg"
+  quality: 95
+
+# Image preprocessing
+preprocessing:
+  # Resizing
+  resize:
+    enabled: true
+    target_size: [640, 640]  # [width, height]
+    maintain_aspect_ratio: true
+    padding: true
+    padding_color: [255, 255, 255]  # White padding
+    
+  # Normalization
+  normalization:
+    method: "standard"  # standard, minmax, none
+    mean: [0.485, 0.456, 0.406]  # ImageNet mean
+    std: [0.229, 0.224, 0.225]   # ImageNet std
+    
+  # Color space conversion
+  color_space:
+    input: "RGB"
+    output: "RGB"
+    convert_grayscale: false
+
+# Stain normalization
+stain_normalization:
+  method: "macenko"  # macenko, reinhard, vahadane, none
+  target_stain: "he"  # he, ihc, pas, none
+  
+  # Macenko parameters
+  macenko:
+    alpha: 0.1
+    beta: 0.15
+    max_iter: 1000
+    tolerance: 1e-6
+    
+  # Reinhard parameters
+  reinhard:
+    alpha: 1.0
+    beta: 0.15
+    gamma: 1.0
+    
+  # Vahadane parameters
+  vahadane:
+    alpha: 0.1
+    beta: 0.15
+    max_iter: 1000
+    tolerance: 1e-6
+
+# Data augmentation
+augmentation:
+  enabled: true
+  probability: 0.5
+  
+  # Geometric transformations
+  geometric:
+    rotation:
+      enabled: true
+      limit: 15  # degrees
+      probability: 0.3
+      
+    flip:
+      horizontal: true
+      vertical: false
+      probability: 0.5
+      
+    shift_scale_rotate:
+      enabled: true
+      shift_limit: 0.1
+      scale_limit: 0.1
+      rotate_limit: 15
+      probability: 0.3
+      
+    elastic_transform:
+      enabled: false
+      alpha: 1
+      sigma: 50
+      alpha_affine: 50
+      probability: 0.2
+      
+  # Color transformations
+  color:
+    brightness_contrast:
+      enabled: true
+      brightness_limit: 0.2
+      contrast_limit: 0.2
+      probability: 0.3
+      
+    hue_saturation_value:
+      enabled: true
+      hue_shift_limit: 20
+      sat_shift_limit: 30
+      val_shift_limit: 20
+      probability: 0.3
+      
+    rgb_shift:
+      enabled: true
+      r_shift_limit: 20
+      g_shift_limit: 20
+      b_shift_limit: 20
+      probability: 0.3
+      
+    random_gamma:
+      enabled: true
+      gamma_limit: [80, 120]
+      probability: 0.2
+      
+  # Noise and blur
+  noise:
+    gauss_noise:
+      enabled: true
+      var_limit: [10, 50]
+      probability: 0.2
+      
+    gaussian_blur:
+      enabled: true
+      blur_limit: [3, 7]
+      probability: 0.2
+      
+    motion_blur:
+      enabled: false
+      blur_limit: 7
+      probability: 0.2
+      
+  # Advanced augmentations
+  advanced:
+    cutout:
+      enabled: false
+      num_holes: 8
+      max_h_size: 32
+      max_w_size: 32
+      probability: 0.2
+      
+    grid_distortion:
+      enabled: false
+      num_steps: 5
+      distort_limit: 0.3
+      probability: 0.2
+      
+    optical_distortion:
+      enabled: false
+      distort_limit: 0.05
+      shift_limit: 0.05
+      probability: 0.2
+
+# COCO format configuration
+coco:
+  # Categories for blood cell detection
+  categories:
+    - id: 1
+      name: "rbc"
+      supercategory: "blood_cell"
+    - id: 2
+      name: "wbc"
+      supercategory: "blood_cell"
+    - id: 3
+      name: "platelet"
+      supercategory: "blood_cell"
+    - id: 4
+      name: "neutrophil"
+      supercategory: "wbc_subtype"
+    - id: 5
+      name: "lymphocyte"
+      supercategory: "wbc_subtype"
+    - id: 6
+      name: "monocyte"
+      supercategory: "wbc_subtype"
+    - id: 7
+      name: "eosinophil"
+      supercategory: "wbc_subtype"
+    - id: 8
+      name: "basophil"
+      supercategory: "wbc_subtype"
+      
+  # Annotation format
+  annotation_format:
+    bbox: [x, y, width, height]  # COCO format
+    area: "width * height"
+    iscrowd: 0
+    
+  # Image metadata
+  image_metadata:
+    license: 1
+    coco_url: ""
+    flickr_url: ""
+    date_captured: ""
+
+# YOLO format configuration
+yolo:
+  # Class mapping
+  class_mapping:
+    0: "rbc"
+    1: "wbc"
+    2: "platelet"
+    3: "neutrophil"
+    4: "lymphocyte"
+    5: "monocyte"
+    6: "eosinophil"
+    7: "basophil"
+    
+  # Annotation format
+  annotation_format:
+    normalized: true  # Coordinates normalized to [0, 1]
+    format: "class_id center_x center_y width height"
+    
+  # Image size
+  image_size: [640, 640]  # [width, height]
+
+# Tiling configuration
+tiling:
+  enabled: true
+  tile_size: [512, 512]  # [width, height]
+  overlap: 0.1  # 10% overlap
+  min_tile_area: 0.1  # Minimum 10% of tile area must contain cells
+  
+  # Tile filtering
+  filtering:
+    min_cell_count: 5  # Minimum number of cells per tile
+    max_background_ratio: 0.8  # Maximum 80% background
+    min_annotation_area: 0.01  # Minimum 1% of tile area covered by annotations
+
+# Quality control
+quality_control:
+  enabled: true
+  
+  # Image quality checks
+  image_checks:
+    min_resolution: [256, 256]  # Minimum image size
+    max_resolution: [4096, 4096]  # Maximum image size
+    min_file_size: 1024  # Minimum file size in bytes
+    max_file_size: 50000000  # Maximum file size in bytes (50MB)
+    
+  # Annotation quality checks
+  annotation_checks:
+    min_bbox_area: 100  # Minimum bounding box area in pixels
+    max_bbox_area: 1000000  # Maximum bounding box area in pixels
+    min_bbox_aspect_ratio: 0.1  # Minimum width/height ratio
+    max_bbox_aspect_ratio: 10.0  # Maximum width/height ratio
+    
+  # Dataset quality checks
+  dataset_checks:
+    min_images_per_class: 10
+    max_class_imbalance: 10.0  # Maximum ratio between most and least frequent classes
+    min_annotations_per_image: 1
+
+# Data splitting
+splitting:
+  strategy: "stratified"  # stratified, random, time_based
+  test_size: 0.2
+  val_size: 0.2
+  random_state: 42
+  
+  # Stratification by class distribution
+  stratification:
+    by_class_distribution: true
+    min_samples_per_split: 5
+    
+  # Time-based splitting (if timestamps available)
+  time_based:
+    enabled: false
+    time_column: "date"
+    test_start_date: "2023-01-01"
+    val_start_date: "2022-06-01"
+
+# Export settings
+export:
+  # COCO format export
+  coco:
+    enabled: true
+    output_path: "./data/processed/images_coco"
+    include_metadata: true
+    include_licenses: true
+    
+  # YOLO format export
+  yolo:
+    enabled: true
+    output_path: "./data/processed/images_yolo"
+    include_class_names: true
+    include_config: true
+    
+  # Image export
+  images:
+    enabled: true
+    output_path: "./data/processed/images_processed"
+    format: "jpg"
+    quality: 95
+    include_original: false
+    include_augmented: true

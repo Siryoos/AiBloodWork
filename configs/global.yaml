@@ -1,0 +1,143 @@
+# Global configuration for bloodwork-ai
+# This file contains dataset roots, registry URIs, and global thresholds
+
+# Data paths
+data:
+  root_path: "./data"
+  raw_path: "./data/raw"
+  interim_path: "./data/interim"
+  processed_path: "./data/processed"
+  
+  # Tabular data paths
+  tabular:
+    input_path: "./data/raw/tabular"
+    output_path: "./data/interim/tabular"
+    processed_path: "./data/processed/tabular_featured"
+    
+  # Image data paths
+  images:
+    input_path: "./data/raw/images"
+    output_path: "./data/interim/images"
+    processed_path: "./data/processed/images_coco"
+
+# Model registry
+model_registry:
+  uri: "sqlite:///mlflow.db"
+  experiment_name: "bloodwork-ai"
+  model_name_prefix: "bloodwork_ai"
+  
+# Artifacts
+artifacts:
+  root_path: "./artifacts"
+  models_path: "./artifacts/models"
+  reports_path: "./artifacts/reports"
+  logs_path: "./artifacts/logs"
+
+# Clinical thresholds
+clinical_thresholds:
+  anemia:
+    hb_male: 13.0  # g/dL
+    hb_female: 12.0  # g/dL
+    hct_male: 39.0  # %
+    hct_female: 36.0  # %
+    
+  thyroid:
+    tsh_normal_min: 0.4  # mIU/L
+    tsh_normal_max: 4.0  # mIU/L
+    tsh_subclinical_min: 4.0  # mIU/L
+    tsh_subclinical_max: 10.0  # mIU/L
+    ft4_normal_min: 0.8  # ng/dL
+    ft4_normal_max: 1.8  # ng/dL
+    
+  metabolic_syndrome:
+    waist_circumference_male: 102  # cm
+    waist_circumference_female: 88  # cm
+    triglycerides: 150  # mg/dL
+    hdl_male: 40  # mg/dL
+    hdl_female: 50  # mg/dL
+    systolic_bp: 130  # mmHg
+    diastolic_bp: 85  # mmHg
+    glucose: 100  # mg/dL
+    
+  cvd_risk:
+    low_threshold: 0.1  # 10%
+    high_threshold: 0.2  # 20%
+    
+  dic:
+    d_dimer_threshold: 500  # ng/mL
+    pt_threshold: 15  # seconds
+    aptt_threshold: 40  # seconds
+    fibrinogen_threshold: 200  # mg/dL
+    platelet_threshold: 100  # K/μL
+    
+  b12_deficiency:
+    deficient_threshold: 200  # pg/mL
+    borderline_threshold: 300  # pg/mL
+    
+  ferritin:
+    low_male: 30  # ng/mL
+    low_female: 15  # ng/mL
+    high_threshold: 300  # ng/mL
+
+# Model performance thresholds
+performance_thresholds:
+  tabular:
+    min_auc: 0.75
+    min_f1: 0.70
+    max_calibration_error: 0.10
+    
+  vision:
+    min_map50: 0.80
+    min_precision: 0.75
+    min_recall: 0.70
+
+# Data quality thresholds
+data_quality:
+  max_missing_percentage: 0.5  # 50%
+  min_samples_per_class: 10
+  max_outlier_percentage: 0.05  # 5%
+  
+# Feature engineering
+feature_engineering:
+  enable_ratios: true
+  enable_trends: true
+  enable_interactions: true
+  max_features: 100
+  
+# Model training
+training:
+  random_state: 42
+  test_size: 0.2
+  val_size: 0.2
+  n_jobs: -1
+  early_stopping_rounds: 50
+  
+# Evaluation
+evaluation:
+  n_bootstrap: 1000
+  confidence_level: 0.95
+  calibration_bins: 10
+  
+# Serving
+serving:
+  host: "0.0.0.0"
+  port: 8080
+  workers: 1
+  timeout: 30
+  max_request_size: 10485760  # 10MB
+  
+# Monitoring
+monitoring:
+  enable_prometheus: true
+  prometheus_port: 9090
+  enable_grafana: true
+  grafana_port: 3000
+  log_level: "INFO"
+  log_format: "json"
+  
+# Security
+security:
+  enable_auth: false
+  api_key_required: false
+  cors_origins: ["*"]
+  max_requests_per_minute: 100

@@ -1,0 +1,252 @@
+# Global parameters for bloodwork-ai pipeline
+# This file contains all hyperparameters and configuration settings
+
+# Data configuration
+data:
+  tabular:
+    input_path: "data/raw/tabular"
+    output_path: "data/interim/tabular"
+    processed_path: "data/processed/tabular_featured"
+  images:
+    input_path: "data/raw/images"
+    output_path: "data/interim/images"
+    processed_path: "data/processed/images_coco"
+
+# Preprocessing parameters
+preprocessing:
+  tabular:
+    imputation_strategy: "median"  # median, mean, most_frequent, constant
+    outlier_method: "winsorize"    # winsorize, iqr, zscore
+    scaling_method: "standard"     # standard, minmax, robust, none
+    feature_selection: "mutual_info"  # mutual_info, boruta, l1, none
+    test_size: 0.2
+    val_size: 0.2
+    random_state: 42
+  images:
+    stain_normalization: "macenko"  # macenko, reinhard, none
+    augmentation: true
+    tile_size: 512
+    overlap: 0.1
+    test_size: 0.2
+    val_size: 0.2
+    random_state: 42
+
+# Model parameters
+models:
+  tabular:
+    anemia:
+      algorithm: "xgboost"  # xgboost, lightgbm, mlp, logistic
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    mets:
+      algorithm: "lightgbm"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    cvd:
+      algorithm: "xgboost"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    thyroid:
+      algorithm: "lightgbm"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    dic:
+      algorithm: "xgboost"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    b12:
+      algorithm: "lightgbm"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+    ferritin:
+      algorithm: "xgboost"
+      n_estimators: 1000
+      max_depth: 6
+      learning_rate: 0.1
+      subsample: 0.8
+      colsample_bytree: 0.8
+      random_state: 42
+      early_stopping_rounds: 50
+  vision:
+    wbc:
+      model: "yolov8n"  # yolov8n, yolov8s, yolov8m, yolov8l, yolov8x
+      epochs: 100
+      batch_size: 16
+      img_size: 640
+      patience: 20
+      device: "auto"
+      workers: 8
+    rbc:
+      model: "yolov8n"
+      epochs: 100
+      batch_size: 16
+      img_size: 640
+      patience: 20
+      device: "auto"
+      workers: 8
+    platelet:
+      model: "yolov8n"
+      epochs: 100
+      batch_size: 16
+      img_size: 640
+      patience: 20
+      device: "auto"
+      workers: 8
+
+# Training parameters
+training:
+  anemia:
+    n_trials: 100
+    timeout: 3600  # seconds
+    pruner: "median"
+    metric: "roc_auc"
+    direction: "maximize"
+  mets:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "roc_auc"
+    direction: "maximize"
+  cvd:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "roc_auc"
+    direction: "maximize"
+  thyroid:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "f1_macro"
+    direction: "maximize"
+  dic:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "roc_auc"
+    direction: "maximize"
+  b12:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "roc_auc"
+    direction: "maximize"
+  ferritin:
+    n_trials: 100
+    timeout: 3600
+    pruner: "median"
+    metric: "rmse"
+    direction: "minimize"
+  wbc:
+    n_trials: 50
+    timeout: 7200
+    pruner: "median"
+    metric: "mAP50"
+    direction: "maximize"
+  rbc:
+    n_trials: 50
+    timeout: 7200
+    pruner: "median"
+    metric: "mAP50"
+    direction: "maximize"
+  platelet:
+    n_trials: 50
+    timeout: 7200
+    pruner: "median"
+    metric: "mAP50"
+    direction: "maximize"
+
+# Evaluation parameters
+evaluation:
+  tabular:
+    metrics: ["roc_auc", "pr_auc", "f1", "precision", "recall", "accuracy"]
+    calibration: true
+    shap: true
+    thresholds: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  vision:
+    metrics: ["mAP50", "mAP75", "precision", "recall", "f1"]
+    iou_threshold: 0.5
+    conf_threshold: 0.25
+    grad_cam: true
+
+# Report generation
+reports:
+  output_format: "html"  # html, pdf, both
+  include_explanations: true
+  include_plots: true
+  include_shap: true
+  include_grad_cam: true
+
+# Clinical thresholds
+clinical_thresholds:
+  anemia:
+    hb_threshold: 12.0  # g/dL
+    hct_threshold: 36.0  # %
+  thyroid:
+    tsh_normal_min: 0.4  # mIU/L
+    tsh_normal_max: 4.0  # mIU/L
+    subclinical_tsh_min: 4.0
+    subclinical_tsh_max: 10.0
+  cvd:
+    risk_threshold: 0.1  # 10% risk
+  dic:
+    d_dimer_threshold: 500.0  # ng/mL
+  b12:
+    deficiency_threshold: 200.0  # pg/mL
+  ferritin:
+    low_threshold: 15.0  # ng/mL (women), 30.0 (men)
+
+# MLflow configuration
+mlflow:
+  experiment_name: "bloodwork-ai"
+  tracking_uri: "sqlite:///mlflow.db"
+  registry_uri: "sqlite:///mlflow.db"
+  log_models: true
+  log_artifacts: true
+
+# Serving configuration
+serving:
+  host: "0.0.0.0"
+  port: 8080
+  workers: 1
+  log_level: "info"
+  reload: false
+  timeout: 30
+
+# Monitoring
+monitoring:
+  prometheus_port: 9090
+  grafana_port: 3000
+  enable_metrics: true
+  enable_logging: true
+  log_format: "json"

@@ -1,0 +1,117 @@
+# MLflow configuration for bloodwork-ai
+# This file contains MLflow tracking and model registry settings
+
+# Tracking configuration
+tracking:
+  uri: "sqlite:///mlflow.db"
+  experiment_name: "bloodwork-ai"
+  run_name: null  # Will be set dynamically
+  tags:
+    project: "bloodwork-ai"
+    version: "0.1.0"
+    environment: "development"
+
+# Model registry configuration
+registry:
+  uri: "sqlite:///mlflow.db"
+  model_name_prefix: "bloodwork_ai"
+  auto_register: true
+  version_stage: "None"  # None, Staging, Production, Archived
+
+# Artifact storage
+artifacts:
+  root_uri: "./artifacts/mlflow"
+  s3_bucket: null  # Set if using S3
+  gcs_bucket: null  # Set if using GCS
+  azure_container: null  # Set if using Azure
+
+# Model flavors to log
+flavors:
+  sklearn: true
+  xgboost: true
+  lightgbm: true
+  pytorch: true
+  onnx: true
+  python_function: true
+
+# Logging configuration
+logging:
+  log_models: true
+  log_artifacts: true
+  log_parameters: true
+  log_metrics: true
+  log_tags: true
+  log_input_examples: true
+  log_model_signatures: true
+
+# Experiment management
+experiments:
+  create_new: true
+  search_experiments: true
+  get_experiment_by_name: true
+  set_experiment: true
+
+# Run management
+runs:
+  create_run: true
+  start_run: true
+  end_run: true
+  log_metric: true
+  log_param: true
+  log_artifact: true
+  set_tag: true
+  get_run: true
+  search_runs: true
+
+# Model management
+models:
+  log_model: true
+  load_model: true
+  save_model: true
+  get_model: true
+  search_registered_models: true
+  get_latest_versions: true
+  set_model_version_tag: true
+  set_model_version_stage: true
+
+# Custom metrics
+custom_metrics:
+  - name: "clinical_accuracy"
+    description: "Accuracy at clinically relevant thresholds"
+  - name: "calibration_error"
+    description: "Expected Calibration Error (ECE)"
+  - name: "shap_importance"
+    description: "SHAP feature importance score"
+  - name: "grad_cam_score"
+    description: "Grad-CAM attention score"
+
+# Model validation
+validation:
+  enable: true
+  schema_validation: true
+  signature_validation: true
+  input_example_validation: true
+  custom_validation: true
+
+# Security
+security:
+  enable_auth: false
+  username: null
+  password: null
+  token: null
+  ssl_cert_path: null
+  ssl_key_path: null
+
+# Performance
+performance:
+  max_workers: 4
+  timeout: 300
+  retry_attempts: 3
+  batch_size: 1000
+
+# Environment variables
+env_vars:
+  MLFLOW_TRACKING_URI: "sqlite:///mlflow.db"
+  MLFLOW_EXPERIMENT_NAME: "bloodwork-ai"
+  MLFLOW_MODEL_REGISTRY_URI: "sqlite:///mlflow.db"
+  MLFLOW_ARTIFACT_ROOT: "./artifacts/mlflow"
