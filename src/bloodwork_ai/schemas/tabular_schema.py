@@ -163,7 +163,7 @@ class LabPanelSchema(BaseModel):
     patient_id: Optional[str] = Field(None, description="Patient identifier")
     date: Optional[str] = Field(None, description="Lab date (YYYY-MM-DD)")
     age: Optional[int] = Field(None, ge=0, le=120, description="Patient age (years)")
-    sex: Optional[str] = Field(None, regex="^(M|F|Male|Female)$", description="Patient sex")
+    sex: Optional[str] = Field(None, pattern="^(M|F|Male|Female)$", description="Patient sex")
     
     # Lab panels
     cbc: Optional[CBCSchema] = Field(None, description="Complete Blood Count")

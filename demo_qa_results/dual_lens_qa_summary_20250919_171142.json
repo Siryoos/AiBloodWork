@@ -1,0 +1,33 @@
+{
+  "overall_status": "FAIL",
+  "total_duration_s": 4.400882244110107,
+  "timestamp": 1758316302.3389592,
+  "config": {
+    "handoff_time_target_ms": 300.0,
+    "mapping_accuracy_target_um": 1.0,
+    "surface_prediction_target_um": 0.5,
+    "cross_lens_repeatability_target_um": 0.3
+  },
+  "test_summary": {
+    "Dual-Lens Handoff Performance": {
+      "status": "FAIL",
+      "duration_s": 3.3767952919006348,
+      "error": null
+    },
+    "Focus Surface Calibration": {
+      "status": "FAIL",
+      "duration_s": 0.0017290115356445312,
+      "error": null
+    },
+    "Parfocal Mapping Validation": {
+      "status": "PASS",
+      "duration_s": 1.0221450328826904,
+      "error": null
+    },
+    "Temperature Compensation": {
+      "status": "PASS",
+      "duration_s": 0.00013208389282226562,
+      "error": null
+    }
+  }
+}

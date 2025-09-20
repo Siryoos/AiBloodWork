@@ -1,0 +1,185 @@
+{
+  "Dual-Lens Handoff Performance": {
+    "passed": "False",
+    "duration_s": 25.986023902893066,
+    "error_message": null,
+    "details": {
+      "total_tests": 20,
+      "successful_handoffs": 20,
+      "success_rate": 1.0,
+      "performance_stats": {
+        "avg_handoff_time_ms": 1265.7676100730896,
+        "p95_handoff_time_ms": 1963.252067565918,
+        "max_handoff_time_ms": 2019.1380977630615,
+        "time_target_met": "False",
+        "avg_mapping_error_um": 0.6649999999999997,
+        "p95_mapping_error_um": 1.214999999999992,
+        "max_mapping_error_um": 1.5000000000000027,
+        "accuracy_target_met": "False"
+      },
+      "target_performance": {
+        "handoff_time_target_ms": 300.0,
+        "mapping_accuracy_target_um": 1.0
+      },
+      "errors": []
+    }
+  },
+  "Focus Surface Calibration": {
+    "passed": false,
+    "duration_s": 0.0005080699920654297,
+    "error_message": null,
+    "details": {
+      "lens_results": {
+        "lens_a": {
+          "calibration": {
+            "success": true,
+            "lens_id": "lens_a",
+            "model": {
+              "coefficients": [
+                7.119811616928635,
+                0.00039887904599019444,
+                -0.000466967962070372,
+                1.5894260763077752e-07,
+                -3.1263426953089467e-07,
+                3.565498031067528e-07
+              ],
+              "rms_error_um": 1.5442454124218632,
+              "max_error_um": 4.754836685139842,
+              "num_points": 15,
+              "calibration_timestamp": 1758316380.517173,
+              "x_range": [
+                -4610.293692927736,
+                4994.806237209739
+              ],
+              "y_range": [
+                -2212.4096265305293,
+                4527.176297759459
+              ],
+              "z_range": [
+                2.4770479460229593,
+                10.0
+              ]
+            },
+            "fit_quality": "fair"
+          },
+          "prediction_accuracy": {
+            "avg_error_um": 3.8029036986299487,
+            "max_error_um": 10.911142964777802,
+            "rms_error_um": 4.765414793920883,
+            "num_test_points": 10,
+            "target_met": "False"
+          }
+        },
+        "lens_b": {
+          "calibration": {
+            "success": true,
+            "lens_id": "lens_b",
+            "model": {
+              "coefficients": [
+                1.4085209026195347,
+                -0.00011553289249718217,
+                0.000416715164802525,
+                3.242821958813679e-07,
+                3.751485380459129e-08,
+                1.9909524097863576e-07
+              ],
+              "rms_error_um": 2.602295784066916,
+              "max_error_um": 4.921319624565364,
+              "num_points": 15,
+              "calibration_timestamp": 1758316380.517382,
+              "x_range": [
+                -4743.377144615461,
+                4475.543971292327
+              ],
+              "y_range": [
+                -3658.8387435232416,
+                4599.125467019796
+              ],
+              "z_range": [
+                -3.5869493342349923,
+                10.0
+              ]
+            },
+            "fit_quality": "fair"
+          },
+          "prediction_accuracy": {
+            "avg_error_um": 3.0229590642477158,
+            "max_error_um": 6.945656580760337,
+            "rms_error_um": 3.958626886576182,
+            "num_test_points": 10,
+            "target_met": "False"
+          }
+        }
+      },
+      "prediction_target_um": 0.5
+    }
+  },
+  "Parfocal Mapping Validation": {
+    "passed": "True",
+    "duration_s": 9.417129039764404,
+    "error_message": null,
+    "details": {
+      "mapping_accuracy": {
+        "avg_error_um": 0.4666666666666656,
+        "p95_error_um": 0.9999999999999962,
+        "max_error_um": 1.0000000000000018,
+        "target_met": "True",
+        "num_tests": 15
+      },
+      "round_trip_consistency": {
+        "avg_error_um": 2.6645352591003756e-16,
+        "max_error_um": 1.7763568394002505e-15,
+        "target_met": "True",
+        "num_tests": 15
+      },
+      "targets": {
+        "mapping_accuracy_target_um": 1.0,
+        "consistency_target_um": 0.3
+      }
+    }
+  },
+  "Temperature Compensation": {
+    "passed": "True",
+    "duration_s": 0.00010800361633300781,
+    "error_message": null,
+    "details": {
+      "temperature_sensitivity": {
+        "coefficient_um_per_c": 0.025409092788385906,
+        "max_shift_um": 0.3704585618988019,
+        "target_met": "True",
+        "target_um_per_c": 0.1
+      },
+      "test_data": [
+        {
+          "temperature_c": 20.0,
+          "temp_delta_c": -3.0,
+          "mapping_shift_um": 0.15867908412584164
+        },
+        {
+          "temperature_c": 22.5,
+          "temp_delta_c": -0.5,
+          "mapping_shift_um": 0.02645021386913582
+        },
+        {
+          "temperature_c": 25.0,
+          "temp_delta_c": 2.0,
+          "mapping_shift_um": 0.10581566315424995
+        },
+        {
+          "temperature_c": 27.5,
+          "temp_delta_c": 4.5,
+          "mapping_shift_um": 0.23811857803286296
+        },
+        {
+          "temperature_c": 30.0,
+          "temp_delta_c": 7.0,
+          "mapping_shift_um": 0.3704585618988019
+        }
+      ],
+      "temperature_range_c": [
+        20.0,
+        30.0
+      ]
+    }
+  }
+}

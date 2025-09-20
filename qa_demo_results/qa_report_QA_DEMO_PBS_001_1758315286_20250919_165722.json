@@ -1,0 +1,1040 @@
+{
+  "test_suite_id": "QA_DEMO_PBS_001_1758315286",
+  "timestamp": 1758315286.380679,
+  "configuration": {
+    "slide_id": "DEMO_PBS_001",
+    "slide_type": "PBS",
+    "stain_type": "Wright_Giemsa",
+    "test_positions": [
+      [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      [
+        2000.0,
+        2000.0,
+        -0.5
+      ]
+    ],
+    "edge_positions": [
+      [
+        500.0,
+        500.0,
+        2.0
+      ]
+    ],
+    "temperature_range_c": [
+      18.0,
+      28.0
+    ],
+    "illumination_variations": [
+      "NORMAL",
+      "+10%",
+      "-10%"
+    ],
+    "tilt_test_positions": [],
+    "repeatability_count": 5,
+    "timeout_per_test_s": 30.0
+  },
+  "kpi_thresholds": {
+    "max_focus_error_um": 1.0,
+    "max_focus_error_edge_um": 1.5,
+    "max_repeatability_um": 0.5,
+    "max_elapsed_p95_ms": 150.0,
+    "min_success_rate": 0.95,
+    "min_mtf50_ratio": 0.95,
+    "min_hf_ratio": 0.95,
+    "max_temperature_sensitivity_um_per_c": 1.0,
+    "max_illumination_sensitivity_um": 0.5,
+    "max_tilt_sensitivity_um": 2.0
+  },
+  "test_results": [
+    {
+      "test_id": "accuracy_DEMO_PBS_001_0",
+      "timestamp": 1758315286.3806899,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.14027647232384416,
+      "elapsed_ms": 2830.46817779541,
+      "metric_values": {
+        "tenengrad": 3190.143524169922,
+        "laplacian": 2606.8477744834818,
+        "brenner": 263.30014552696076
+      },
+      "mtf50_ratio": 0.4780660043454375,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_0_0",
+      "timestamp": 1758315289.732151,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.0911959481347197,
+      "elapsed_ms": 3266.17693901062,
+      "metric_values": {
+        "tenengrad": 3273.995292663574,
+        "laplacian": 2613.5810624790465,
+        "brenner": 267.02426087622547
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_0_1",
+      "timestamp": 1758315293.5416121,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.3742699639175962,
+      "elapsed_ms": 2910.299777984619,
+      "metric_values": {
+        "tenengrad": 3166.1723403930664,
+        "laplacian": 2608.557410527428,
+        "brenner": 261.96919806985295
+      },
+      "mtf50_ratio": 1.4078129217541553,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_0_2",
+      "timestamp": 1758315296.931322,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.04762971031291058,
+      "elapsed_ms": 2132.3869228363037,
+      "metric_values": {
+        "tenengrad": 3186.799217224121,
+        "laplacian": 2593.0029541883705,
+        "brenner": 262.93397288602944
+      },
+      "mtf50_ratio": 0.27004536502754806,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_0_3",
+      "timestamp": 1758315299.5675871,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": -0.5162434494598289,
+      "elapsed_ms": 3099.030017852783,
+      "metric_values": {
+        "tenengrad": 3273.7975463867188,
+        "laplacian": 2611.02900256704,
+        "brenner": 266.54481464460787
+      },
+      "mtf50_ratio": 0.8904414586085763,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_0_4",
+      "timestamp": 1758315303.111383,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.3438100326845705,
+      "elapsed_ms": 2178.4050464630127,
+      "metric_values": {
+        "tenengrad": 3203.5941467285156,
+        "laplacian": 2612.7514571016654,
+        "brenner": 264.61028645833335
+      },
+      "mtf50_ratio": 0.27250790784896556,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "accuracy_DEMO_PBS_001_1",
+      "timestamp": 1758315305.799257,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.0049625137372820705,
+      "elapsed_ms": 2108.7100505828857,
+      "metric_values": {
+        "tenengrad": 3194.8121490478516,
+        "laplacian": 2596.0615433789208,
+        "brenner": 262.9871055453431
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_1_0",
+      "timestamp": 1758315308.415565,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.10330289997119968,
+      "elapsed_ms": 2168.415069580078,
+      "metric_values": {
+        "tenengrad": 3191.209014892578,
+        "laplacian": 2594.8196941686183,
+        "brenner": 262.5056027879902
+      },
+      "mtf50_ratio": 6.616731609737801,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_1_1",
+      "timestamp": 1758315311.084136,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.04628793617417626,
+      "elapsed_ms": 2559.6420764923096,
+      "metric_values": {
+        "tenengrad": 3266.145462036133,
+        "laplacian": 2613.64800218014,
+        "brenner": 266.28634344362746
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_1_2",
+      "timestamp": 1758315314.191085,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.8392457092758359,
+      "elapsed_ms": 2643.671989440918,
+      "metric_values": {
+        "tenengrad": 3175.2435302734375,
+        "laplacian": 2594.381642255874,
+        "brenner": 261.4921453737745
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_1_3",
+      "timestamp": 1758315317.328974,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.2863812524437696,
+      "elapsed_ms": 2159.1498851776123,
+      "metric_values": {
+        "tenengrad": 3193.6429290771484,
+        "laplacian": 2600.592639893279,
+        "brenner": 263.14566865808825
+      },
+      "mtf50_ratio": 1.2560222537982288,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_1_4",
+      "timestamp": 1758315320.042582,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.02051174015519161,
+      "elapsed_ms": 2595.839023590088,
+      "metric_values": {
+        "tenengrad": 3235.751121520996,
+        "laplacian": 2617.246003020322,
+        "brenner": 265.31691559436274
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "accuracy_DEMO_PBS_001_2",
+      "timestamp": 1758315323.149013,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.6748435108029707,
+      "elapsed_ms": 2129.0721893310547,
+      "metric_values": {
+        "tenengrad": 3243.027099609375,
+        "laplacian": 2571.9917707665445,
+        "brenner": 263.8086741727941
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_2_0",
+      "timestamp": 1758315325.812459,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.04576842025915415,
+      "elapsed_ms": 2659.446954727173,
+      "metric_values": {
+        "tenengrad": 3223.3992080688477,
+        "laplacian": 2604.0990661891265,
+        "brenner": 264.9162109375
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_2_1",
+      "timestamp": 1758315329.015307,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.094734591664271,
+      "elapsed_ms": 2950.1349925994873,
+      "metric_values": {
+        "tenengrad": 3157.383346557617,
+        "laplacian": 2587.238140455447,
+        "brenner": 261.6015510110294
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_2_2",
+      "timestamp": 1758315332.411672,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.46964022400871386,
+      "elapsed_ms": 2926.3458251953125,
+      "metric_values": {
+        "tenengrad": 3262.549606323242,
+        "laplacian": 2616.1011944461934,
+        "brenner": 267.31593903186274
+      },
+      "mtf50_ratio": 0.2917516396725064,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_2_3",
+      "timestamp": 1758315335.8199959,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.23178377247672527,
+      "elapsed_ms": 2618.859052658081,
+      "metric_values": {
+        "tenengrad": 3254.3399200439453,
+        "laplacian": 2596.8244432862703,
+        "brenner": 264.23860294117645
+      },
+      "mtf50_ratio": 2.33957735085534,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "repeatability_DEMO_PBS_001_2_4",
+      "timestamp": 1758315338.944642,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.36950821146049184,
+      "elapsed_ms": 2944.804906845093,
+      "metric_values": {
+        "tenengrad": 3219.844337463379,
+        "laplacian": 2596.7885629825614,
+        "brenner": 263.41632582720587
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "edge_DEMO_PBS_001_0",
+      "timestamp": 1758315342.407295,
+      "position": [
+        500.0,
+        500.0,
+        2.0
+      ],
+      "z_measured": -0.17421723518066518,
+      "elapsed_ms": 2566.5500164031982,
+      "metric_values": {
+        "tenengrad": 3242.773468017578,
+        "laplacian": 2587.1047563476022,
+        "brenner": 264.444029564951
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_0",
+      "timestamp": 1758315345.480407,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.7393475897206574,
+      "elapsed_ms": 2750.6561279296875,
+      "metric_values": {
+        "tenengrad": 3246.0771102905273,
+        "laplacian": 2595.7129206605605,
+        "brenner": 265.48349417892155
+      },
+      "mtf50_ratio": 0.4276880107367807,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_1",
+      "timestamp": 1758315348.772181,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.30718273420512604,
+      "elapsed_ms": 2197.5700855255127,
+      "metric_values": {
+        "tenengrad": 3234.01993560791,
+        "laplacian": 2601.3497637430555,
+        "brenner": 264.72014399509806
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_2",
+      "timestamp": 1758315351.43501,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": -0.278156465258428,
+      "elapsed_ms": 2620.9490299224854,
+      "metric_values": {
+        "tenengrad": 3243.7690505981445,
+        "laplacian": 2604.708934570881,
+        "brenner": 265.18669577205884
+      },
+      "mtf50_ratio": 1.0926007847708303,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_3",
+      "timestamp": 1758315354.585732,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": -0.37645770070974,
+      "elapsed_ms": 2605.1101684570312,
+      "metric_values": {
+        "tenengrad": 3265.9744720458984,
+        "laplacian": 2610.795382268945,
+        "brenner": 266.84370404411766
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_4",
+      "timestamp": 1758315357.6877599,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.47775727543119156,
+      "elapsed_ms": 2916.699171066284,
+      "metric_values": {
+        "tenengrad": 3262.2814331054688,
+        "laplacian": 2583.7319145202637,
+        "brenner": 264.14934895833335
+      },
+      "mtf50_ratio": 0.8717934674356507,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_5",
+      "timestamp": 1758315361.1205409,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.12196659767599938,
+      "elapsed_ms": 2463.5870456695557,
+      "metric_values": {
+        "tenengrad": 3213.9158782958984,
+        "laplacian": 2606.3687306733336,
+        "brenner": 264.4056295955882
+      },
+      "mtf50_ratio": 0.8133253991466182,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_6",
+      "timestamp": 1758315364.13905,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.0849376469257424,
+      "elapsed_ms": 2532.0041179656982,
+      "metric_values": {
+        "tenengrad": 3252.3300857543945,
+        "laplacian": 2614.074346433612,
+        "brenner": 266.0521024816176
+      },
+      "mtf50_ratio": 0.5324640991577033,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_7",
+      "timestamp": 1758315367.190079,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.1834640658992034,
+      "elapsed_ms": 2498.950242996216,
+      "metric_values": {
+        "tenengrad": 3209.265853881836,
+        "laplacian": 2595.217474737612,
+        "brenner": 263.07380131740194
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_8",
+      "timestamp": 1758315370.2330198,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.9678637734099749,
+      "elapsed_ms": 3991.544246673584,
+      "metric_values": {
+        "tenengrad": 3253.842010498047,
+        "laplacian": 2617.402789482323,
+        "brenner": 266.2994485294118
+      },
+      "mtf50_ratio": 0.2866380467889908,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_0_run_9",
+      "timestamp": 1758315374.728999,
+      "position": [
+        1000.0,
+        1000.0,
+        0.0
+      ],
+      "z_measured": 0.4592982989086087,
+      "elapsed_ms": 2245.030164718628,
+      "metric_values": {
+        "tenengrad": 3157.3262634277344,
+        "laplacian": 2593.6069176177843,
+        "brenner": 261.44406403186275
+      },
+      "mtf50_ratio": 1.1389467257389045,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_0",
+      "timestamp": 1758315377.498322,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.11204690052335081,
+      "elapsed_ms": 2149.4901180267334,
+      "metric_values": {
+        "tenengrad": 3173.151153564453,
+        "laplacian": 2578.1246730224084,
+        "brenner": 261.8105162377451
+      },
+      "mtf50_ratio": 0.9269314368327624,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_1",
+      "timestamp": 1758315380.157048,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.37236819567973867,
+      "elapsed_ms": 2813.9729499816895,
+      "metric_values": {
+        "tenengrad": 3184.5704345703125,
+        "laplacian": 2616.1663573299156,
+        "brenner": 264.5343252144608
+      },
+      "mtf50_ratio": 1.5658420489832623,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_2",
+      "timestamp": 1758315383.451339,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.10954228722690054,
+      "elapsed_ms": 2222.831964492798,
+      "metric_values": {
+        "tenengrad": 3218.6379623413086,
+        "laplacian": 2611.6685739820823,
+        "brenner": 264.32042738970586
+      },
+      "mtf50_ratio": 2.51654784521922,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_3",
+      "timestamp": 1758315386.166208,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.11056995452718485,
+      "elapsed_ms": 2872.997760772705,
+      "metric_values": {
+        "tenengrad": 3235.724334716797,
+        "laplacian": 2621.4716758549766,
+        "brenner": 265.9363472732843
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_4",
+      "timestamp": 1758315389.5116239,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.6673981746783513,
+      "elapsed_ms": 3328.6941051483154,
+      "metric_values": {
+        "tenengrad": 3209.864875793457,
+        "laplacian": 2536.195966085361,
+        "brenner": 260.8631242340686
+      },
+      "mtf50_ratio": 0.4374489433437863,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_5",
+      "timestamp": 1758315393.2796412,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.6744460246539603,
+      "elapsed_ms": 3842.684745788574,
+      "metric_values": {
+        "tenengrad": 3196.5388793945312,
+        "laplacian": 2607.861239302423,
+        "brenner": 263.2403262867647
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_6",
+      "timestamp": 1758315397.650049,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.17252250234696395,
+      "elapsed_ms": 2204.4308185577393,
+      "metric_values": {
+        "tenengrad": 3197.0382766723633,
+        "laplacian": 2595.2452772369143,
+        "brenner": 262.6668275122549
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_7",
+      "timestamp": 1758315400.3306088,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": -0.07385062977165394,
+      "elapsed_ms": 2192.4571990966797,
+      "metric_values": {
+        "tenengrad": 3162.957473754883,
+        "laplacian": 2593.2073395297484,
+        "brenner": 261.3616766237745
+      },
+      "mtf50_ratio": 0.5976903394783554,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_8",
+      "timestamp": 1758315402.992317,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.07549638392037528,
+      "elapsed_ms": 3580.363988876343,
+      "metric_values": {
+        "tenengrad": 3250.7516708374023,
+        "laplacian": 2582.582878114423,
+        "brenner": 264.39409466911764
+      },
+      "mtf50_ratio": 3.063139331295047,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_1_run_9",
+      "timestamp": 1758315407.109379,
+      "position": [
+        1500.0,
+        1500.0,
+        1.0
+      ],
+      "z_measured": 0.3539073875565937,
+      "elapsed_ms": 2882.521867752075,
+      "metric_values": {
+        "tenengrad": 3221.5304565429688,
+        "laplacian": 2609.645588950196,
+        "brenner": 264.7402918198529
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_0",
+      "timestamp": 1758315410.439945,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.1106247895504589,
+      "elapsed_ms": 2683.6111545562744,
+      "metric_values": {
+        "tenengrad": 3218.0034408569336,
+        "laplacian": 2600.861448971322,
+        "brenner": 264.3810546875
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_1",
+      "timestamp": 1758315413.64583,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.15833783899637155,
+      "elapsed_ms": 2124.730110168457,
+      "metric_values": {
+        "tenengrad": 3235.517562866211,
+        "laplacian": 2600.329617811236,
+        "brenner": 265.2445235906863
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_2",
+      "timestamp": 1758315416.342189,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.8521697100726686,
+      "elapsed_ms": 2683.560848236084,
+      "metric_values": {
+        "tenengrad": 3188.4199295043945,
+        "laplacian": 2603.2818187674857,
+        "brenner": 264.20543045343135
+      },
+      "mtf50_ratio": 2.4559795461935816,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_3",
+      "timestamp": 1758315419.511515,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.39593786821019405,
+      "elapsed_ms": 2145.02215385437,
+      "metric_values": {
+        "tenengrad": 3257.2749786376953,
+        "laplacian": 2611.6582965680864,
+        "brenner": 266.453404564951
+      },
+      "mtf50_ratio": 2.240148604372872,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_4",
+      "timestamp": 1758315422.1845682,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.34873677602542974,
+      "elapsed_ms": 2543.407678604126,
+      "metric_values": {
+        "tenengrad": 3201.310089111328,
+        "laplacian": 2599.1684347020782,
+        "brenner": 262.73503753063727
+      },
+      "mtf50_ratio": 0.39718122475401874,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_5",
+      "timestamp": 1758315425.291727,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.24911077182177555,
+      "elapsed_ms": 2613.719940185547,
+      "metric_values": {
+        "tenengrad": 3201.427635192871,
+        "laplacian": 2587.2610628433613,
+        "brenner": 262.46554840686275
+      },
+      "mtf50_ratio": 0.8318331229653639,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_6",
+      "timestamp": 1758315428.4299011,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.19112191529551745,
+      "elapsed_ms": 3169.139862060547,
+      "metric_values": {
+        "tenengrad": 3257.6023178100586,
+        "laplacian": 2614.48674759618,
+        "brenner": 266.51642922794116
+      },
+      "mtf50_ratio": 0.9594342098431999,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_7",
+      "timestamp": 1758315432.1023118,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.1677879660806374,
+      "elapsed_ms": 4093.959331512451,
+      "metric_values": {
+        "tenengrad": 3208.638816833496,
+        "laplacian": 2597.6078774025664,
+        "brenner": 263.0092945772059
+      },
+      "mtf50_ratio": 0.8109108392395523,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_8",
+      "timestamp": 1758315436.741028,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": 0.007322389594980744,
+      "elapsed_ms": 2186.1608028411865,
+      "metric_values": {
+        "tenengrad": 3259.3775787353516,
+        "laplacian": 2615.5912003756966,
+        "brenner": 266.89629289215685
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    },
+    {
+      "test_id": "performance_DEMO_PBS_001_2_run_9",
+      "timestamp": 1758315439.4761221,
+      "position": [
+        2000.0,
+        2000.0,
+        -0.5
+      ],
+      "z_measured": -0.1613039034555995,
+      "elapsed_ms": 2268.681049346924,
+      "metric_values": {
+        "tenengrad": 3204.2498321533203,
+        "laplacian": 2593.191699899835,
+        "brenner": 262.25568704044116
+      },
+      "mtf50_ratio": 1.0,
+      "status": "failed",
+      "error_message": null,
+      "environmental_conditions": null
+    }
+  ],
+  "kpi_results": {
+    "accuracy_pass": 
